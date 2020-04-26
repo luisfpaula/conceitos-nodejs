@@ -25,24 +25,6 @@ function validateRepId(req, res, next){
   return next();  
 }
 
-//Middleware validação campos editáveis
-// function validateEditableFields(request, response, next){
-//   const body = request.body;
-//   const { title, url, techs, likes } = body;
-
-//   if(typeof title !== 'undefined' || typeof url !== 'undefined' || typeof techs !== 'undefined' ){
-//     console.log("chegou aqui!");   
-//   }else{
-//     return response.status(400).json({ error: 'Fields invalids!'});
-//   }
-
-//   // if(typeof likes !== 'undefined'){
-//   //   return response.status(400).json({ error: 'Field LIKES is invalid!'});
-//   // }
-
-//   next();
-// }
-
 app.use('/repositories/:id', validateRepId);
 
 app.get("/repositories", (request, response) => {

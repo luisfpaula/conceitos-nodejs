@@ -14,12 +14,12 @@ function validateRepId(req, res, next){
   const { id } = req.params;
 
   if(!isUuid(id)){
-    return res.status(400).json({ error: 'Invalid repository ID.'});
+    return res.send(400).json({ error: 'Invalid repository ID.'});
   }
   const repIndex  = repositories.findIndex( repository => repository.id === id);
   
   if( repIndex < 0){
-    return response.status(400).json({ error: "Project not found!"});
+    return res.send(400).json({ error: "Project not found!"});
   }
     
   return next();  
@@ -70,9 +70,9 @@ app.delete("/repositories/:id", (request, response) => {
   const { id } = request.params;
   const repIndex  = repositories.findIndex( repository => repository.id === id);
 
-  repositories.splice(repIndex), 1;
+  repositories.splice(repIndex, 1);
 
-  return response.send(204);
+  return response.sendStatus(204);
 });
 
 app.post("/repositories/:id/like", (request, response) => {
